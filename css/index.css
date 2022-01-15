@@ -48,6 +48,9 @@ a{
     scroll-behavior: auto !important;
   }
 }
+:root{
+  --primary: #02a797;
+}
 .nav-link{
   color: black;
   margin-right: 20px;
@@ -177,9 +180,7 @@ li.nav-m:hover a{
   color: #6c757d;
   font-size: 14px;
 }
-.introduce-body-icon{
 
-}
 .introduce-info-title{
   font-weight: 700;
   color: #02a797;
@@ -190,3 +191,76 @@ li.nav-m:hover a{
   color: #6c757d;
 }
 /* introduce */
+
+/* contact */
+.contact-img-top{
+  display: block;
+  margin: 0 auto;
+  animation: float 4s ease-in-out infinite;
+}
+.contact-left input, .contact-left textarea{
+  border-radius: 15px !important;
+  resize: none;
+}
+.contact-info p{
+line-height: 1.8;
+}
+.contact-social-network{
+
+}
+.contact-left input[type="submit"]{
+  float: right;
+}
+/* contact */
+
+/* FAQ */
+.form-faq{
+  position: relative;
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+}
+.form-faq input{
+padding: 15px 40px;
+font-size: 18px;
+box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.icon-search{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  font-size: 25px;
+}
+.btn-faq{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px 13px !important;
+  right: 10px;
+}
+
+.faq-box-icon{
+  font-size: 50px;
+  color: #6c757d!important;
+   display: block;
+  text-align: center;
+}
+.faq-box{
+  padding: 50px;
+}
+.faq-box-icon i{
+ 
+}
+.faq-box-desc{
+  font-size: 18px;
+  font-weight: 500;
+  color: rgb(54, 53, 53);
+  text-align: center;
+  margin-top: 15px;
+}
+
+.faq-box:hover i, .faq-box:hover p{
+  color: var(--primary) !important;
+}
+/* FAQ */
