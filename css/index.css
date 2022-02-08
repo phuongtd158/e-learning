@@ -5,6 +5,7 @@
 *::after {
   box-sizing: border-box;
 }
+
 body,
 h1,
 h2,
@@ -17,27 +18,33 @@ figure,
 picture {
   margin: 0;
 }
+
 body {
   min-height: 100vh;
   line-height: 1.5;
   font-family: "Poppins", sans-serif;
 }
+
 input,
 button,
 select,
 textarea {
   font: inherit;
 }
+
 img,
 picture {
   display: block;
   max-width: 100%;
 }
+
 a {
   text-decoration: none;
 }
+
 /* remove animation for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -47,22 +54,27 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
 :root {
   --primary: #02a797;
   --muted: #6c757d;
 }
+
 .nav-link {
   color: black;
   margin-right: 20px;
   font-size: 18px;
   font-weight: 500;
 }
+
 li.nav-m:hover a {
   color: #02a797;
 }
+
 .nav-m a:focus {
   color: #02a797;
 }
+
 .header_wrapper .menu-navbar-nav {
   width: 60%;
 }
@@ -79,12 +91,14 @@ li.nav-m:hover a {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
+
 /* header scroll */
 
 .btn-extra-header {
   border-radius: 10px;
   margin-right: 10px;
 }
+
 .btn-sign-up {
   border: 2px solid rgb(255, 255, 255);
   background-color: var(--primary);
@@ -98,20 +112,24 @@ li.nav-m:hover a {
   color: black;
   padding: 10px 15px !important;
 }
+
 .btn-login:hover {
   background-color: var(--primary);
   color: rgb(255, 255, 255);
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
+
 .btn-login:focus {
   color: rgb(0, 0, 0);
 }
+
 .btn-sign-up:hover {
   background-color: white;
   color: black;
   border: 2px solid #02a797;
 }
+
 .btn-sign-up:focus {
   color: rgb(0, 0, 0);
 }
@@ -125,11 +143,12 @@ li.nav-m:hover a {
 .banner-wrapper {
   display: flex;
   width: 100%;
-  padding: 100px 0 125px;
+  padding: 170px 0 125px;
   background: url(../img/bg.png);
   background-size: cover;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
 }
 
 .start-now {
@@ -143,17 +162,21 @@ li.nav-m:hover a {
   width: 100%;
   animation: float 4s ease-in-out infinite;
 }
+
 @keyframes float {
   0% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(30px);
   }
+
   100% {
     transform: translateY(0px);
   }
 }
+
 /* Animation banner */
 
 /* introduce */
@@ -164,18 +187,22 @@ li.nav-m:hover a {
   cursor: pointer;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
 .introduce-body-item:hover {
   transform: translateY(0) scale(1.1);
 }
+
 .introduce-body-icon i {
   color: #02a797;
   margin-top: 10px;
   font-size: 22px;
   padding: 2px;
 }
+
 .introduce-body-title {
   margin-top: 40px;
 }
+
 .introduce-body-desc {
   margin-top: 20px;
   color: #6c757d;
@@ -186,11 +213,13 @@ li.nav-m:hover a {
   font-weight: 700;
   color: #02a797;
 }
+
 .introduce-info-desc {
   font-weight: 500;
   padding-top: 10px;
   color: #6c757d;
 }
+
 /* introduce */
 
 /* contact */
@@ -199,11 +228,13 @@ li.nav-m:hover a {
   margin: 0 auto;
   animation: float 4s ease-in-out infinite;
 }
+
 .contact-left input,
 .contact-left textarea {
   border-radius: 15px !important;
   resize: none;
 }
+
 .contact-info p {
   line-height: 1.8;
 }
@@ -211,6 +242,7 @@ li.nav-m:hover a {
 .contact-left input[type="submit"] {
   float: right;
 }
+
 /* contact */
 
 /* FAQ */
@@ -220,11 +252,13 @@ li.nav-m:hover a {
   display: block;
   margin: 0 auto;
 }
+
 .form-faq input {
   padding: 15px 40px;
   font-size: 18px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
 .icon-search {
   position: absolute;
   top: 50%;
@@ -232,6 +266,7 @@ li.nav-m:hover a {
   left: 10px;
   font-size: 25px;
 }
+
 .btn-faq {
   position: absolute;
   top: 50%;
@@ -246,6 +281,7 @@ li.nav-m:hover a {
   display: block;
   text-align: center;
 }
+
 .faq-box {
   padding: 50px;
 }
@@ -262,6 +298,7 @@ li.nav-m:hover a {
 .faq-box:hover p {
   color: var(--primary) !important;
 }
+
 /* FAQ */
 
 /* footer */
@@ -272,6 +309,7 @@ li.nav-m:hover a {
   background-color: var(--primary);
   color: white;
 }
+
 .footer-wrapper .footer-text,
 .footer-wrapper a {
   color: white;
@@ -285,129 +323,212 @@ li.nav-m:hover a {
   font-weight: 700;
   margin-bottom: 25px;
 }
+
 .footer-wrapper .footer-credit {
   border-top: 1px solid white;
   padding-top: 20px;
   margin-top: 30px;
 }
+
 .footer-wrapper .footer-social-icon {
   padding-right: 30px;
   font-style: 20px;
   font-weight: 600;
 }
+
 .footer-wrapper .fb {
   color: rgb(148, 253, 218);
   font-weight: 600;
 }
+
 /* footer */
 
 /*scrollbar*/
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: rgb(221, 214, 214);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
 
 
-.feedback-wrapper{
+.feedback-wrapper {
   padding: 100px 0;
 }
-.feedback-wrapper .feedback-subtitle{
+
+.feedback-wrapper .feedback-subtitle {
   font-size: 20px;
   font-weight: 700;
   line-height: 1.5;
   margin-bottom: 5px;
   color: var(--muted);
 }
-.feedback-wrapper .feedback-title{
+
+.feedback-wrapper .feedback-title {
   font-weight: 800;
   font-style: 34px;
   line-height: 1.25;
   margin-bottom: 80px;
 }
 
-.feedback-wrapper .feedback-card{
+.feedback-wrapper .feedback-card {
   border-radius: 15px;
   padding: 50px;
   background-color: white;
   box-shadow: 0 5px 40px rgb(0 0 0 /15%);
 }
 
-.feedback-wrapper .feedback-card h3{
+.feedback-wrapper .feedback-card h3 {
   font-style: 24px;
   font-weight: 700;
   line-height: 1.5;
   margin-bottom: 5px;
 }
-.feedback-wrapper .feedback-role{
+
+.feedback-wrapper .feedback-role {
   font-style: 19px;
   font-weight: 700;
   line-height: 1;
   margin-bottom: 25px;
   color: var(--primary);
 }
-.feedback-wrapper .feedback-text{
+
+.feedback-wrapper .feedback-text {
   font-style: 15px;
   font-weight: 500;
   line-height: 1.5;
 }
 
-.modal-header, .modal-footer{
+.modal-header,
+.modal-footer {
   border: none;
 }
-.modal-footer{
-  display: block;margin: 0 auto;
+
+.modal-footer {
+  display: block;
+  margin: 0 auto;
 }
 
-.form-login-social-icon{
+.form-login-social-icon {
   padding: 11px 15px;
   font-size: 18px;
   border: 1px solid var(--muted);
   border-radius: 50%;
   color: var(--muted);
 }
-.form-login-social-icon:hover{
+
+.form-login-social-icon:hover {
   color: var(--primary);
 }
-.form-title{
+
+.form-title {
   text-transform: uppercase;
   font-weight: 600;
 }
-.username ,.password{
+
+.username,
+.password {
   padding: 15px;
   border-radius: 15px;
   width: 80%;
-  display: block;margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 }
-.forgot-password{
+
+.forgot-password {
   width: 88%;
   text-align: right;
   margin-top: 10px;
 }
-.forgot-password a{
-  color: var(--muted);
 
+.forgot-password a {
+  color: var(--muted);
 }
-.modal-body{
-}
-.form-btn{
+
+.form-btn {
   width: 30%;
- display: inline-block;
- position: relative;
- left: 43%;
- transform: translateX(-50%);
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.form-login-button{
+
+.form-login-button {
   margin-top: 10px;
 }
-.modal-content{
+
+.modal-content {
   border-radius: 15px;
   box-shadow: 0 5px 40px rgb(0 0 0 /15%);
+}
+
+.course-page-wrapper .list-item-course {
+  padding: 10px 20px;
+  margin-left: 10px;
+  color: var(--muted);
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+
+}
+
+.list-item-course:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.course-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.course-info-wrapper {
+  padding: 150px;
+}
+
+.course-info {
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+}
+
+.course-info h6 {
+  display: inline;
+}
+
+.quiz-detail {
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  padding: 50px;
+}
+
+.quiz-title,
+.quiz-number {
+  font-size: 23px;
+  font-weight: 550;
+}
+
+input[type="radio"].answer {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.list-quiz li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.answer {
+  margin-left: 30px;
+}
+.quiz-answer{
+  cursor: pointer;
 }
