@@ -529,6 +529,46 @@ input[type="radio"].answer {
 .answer {
   margin-left: 30px;
 }
-.quiz-answer{
+
+.quiz-answer {
   cursor: pointer;
+}
+
+.card-img-overlay {
+  background: rgba(0, 0, 0, 0.199);
+  visibility: hidden;
+  opacity: 1;
+  transition: .1s;
+  cursor: pointer;
+}
+
+.card:hover .card .card-img-overlay {
+  visibility: visible;
+  opacity: 1;
+}
+
+.course-desc {
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.course-img {
+  height: 220px;
+}
+
+/* Loading */
+.loading {
+  background: rgba(0, 0, 0, .5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.spinner-center {
+  top: 50%;
+  left: 50%;
+  position: absolute;
 }
