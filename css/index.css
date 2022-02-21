@@ -572,3 +572,18 @@ input[type="radio"].answer {
   left: 50%;
   position: absolute;
 }
+
+.messageError {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+  box-shadow: 0 0 0 0.25rem rgba(245, 10, 10, 0.25);
+}
+
+.hidee {
+  display: none;
+}

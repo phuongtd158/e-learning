@@ -1,5 +1,5 @@
     <!-- course -->
-    <section class="course-wrapper" id="course" style="margin:  80px 0px;">
+    <section class="course-wrapper" id="course" style="margin:  80px 0px;" ng-controller="courseCtrl">
         <div class="container">
             <div class="row mt-5 course-head">
                 <div class="col-12 text-center">
@@ -18,113 +18,44 @@
                 </div>
             </div>
             <div class="row mt-5 course-body">
-                <div class="col-md-4 col-12 mt-4 text-center wow fadeInLeftBig" data-wow-duration="2s" data-wow-delay="0.3s">
+                <div class="col-md-4 col-12 mt-4 text-center" ng-repeat="subject in subjects | limitTo: 6:currentPage">
                     <div class="card">
                         <div class="card">
-                            <img src="http://itplus-academy.edu.vn/upload/c47d9c29fc44c2b7996a2613aec3c1f9/files/writer1/jv.jpg" alt=""
-                                class="card-img-top course-img">
+                            <img src="img/logos/{{subject.Logo}}" alt="" class="card-img-top course-img">
                             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                                <a href="./quiz.html" class="btn btn-primary btn-start-quiz">Làm bài ngay</a>
+                                <button ng-click="startCourse(subject.Id)" class="btn btn-success btn-start-quiz">Chi tiết</button>
                             </div>
                         </div>
                         <div class="card-body">
-                            <h5 class="course-title">Lập trình Java</h5>
+                            <h5 class="course-title">{{subject.Name}}</h5>
                             <p class="course-desc">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque corporis architecto quae omnis
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-12 mt-4 text-center wow fadeInLeftBig" data-wow-duration="2s" data-wow-delay="0.3s">
-                    <div class="card">
-                        <div class="card">
-                            <img src="http://itplus-academy.edu.vn/upload/c47d9c29fc44c2b7996a2613aec3c1f9/files/writer1/jv.jpg" alt=""
-                                class="card-img-top course-img">
-                            <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                                <a href="./quiz.html" class="btn btn-primary btn-start-quiz">Làm bài ngay</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="course-title">Lập trình Java</h5>
-                            <p class="course-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque corporis architecto quae omnis
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12 mt-4 text-center wow fadeInLeftBig" data-wow-duration="2s" data-wow-delay="0.3s">
-                    <div class="card">
-                        <div class="card">
-                            <img src="http://itplus-academy.edu.vn/upload/c47d9c29fc44c2b7996a2613aec3c1f9/files/writer1/jv.jpg" alt=""
-                                class="card-img-top course-img">
-                            <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                                <a href="./quiz.html" class="btn btn-primary btn-start-quiz">Làm bài ngay</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="course-title">Lập trình Java</h5>
-                            <p class="course-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque corporis architecto quae omnis
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12 mt-4 text-center wow fadeInLeftBig" data-wow-duration="2s" data-wow-delay="0.3s">
-                    <div class="card">
-                        <div class="card">
-                            <img src="http://itplus-academy.edu.vn/upload/c47d9c29fc44c2b7996a2613aec3c1f9/files/writer1/jv.jpg" alt=""
-                                class="card-img-top course-img">
-                            <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                                <a href="./quiz.html" class="btn btn-primary btn-start-quiz">Làm bài ngay</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="course-title">Lập trình Java</h5>
-                            <p class="course-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque corporis architecto quae omnis
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12 mt-4 text-center wow fadeInLeftBig" data-wow-duration="2s" data-wow-delay="0.3s">
-                    <div class="card">
-                        <div class="card">
-                            <img src="http://itplus-academy.edu.vn/upload/c47d9c29fc44c2b7996a2613aec3c1f9/files/writer1/jv.jpg" alt=""
-                                class="card-img-top course-img">
-                            <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                                <a href="./views/quiz.html" class="btn btn-primary btn-start-quiz">Làm bài ngay</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="course-title">Lập trình Java</h5>
-                            <p class="course-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque corporis architecto quae omnis
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-12 mt-4 text-center wow fadeInLeftBig" data-wow-duration="2s" data-wow-delay="0.3s">
-                    <div class="card">
-                        <div class="card">
-                            <img src="http://itplus-academy.edu.vn/upload/c47d9c29fc44c2b7996a2613aec3c1f9/files/writer1/jv.jpg" alt=""
-                                class="card-img-top course-img">
-                            <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                                <a href="#!quiz" class="btn btn-primary btn-start-quiz">Làm bài ngay</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="course-title">Lập trình Java</h5>
-                            <p class="course-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque corporis architecto quae omnis
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <a href="#" class="btn btn-primary btn-view-all">Xem tất cả khóa học</a>
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <nav aria-label="Page navigation example" class="">
+                        <ul class="pagination ">
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Previous" ng-click="first()" style="cursor: pointer;">
+                                    <span aria-hidden="true" style="font-size: 25px;">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item" ng-click="prev()">
+                                <p class="page-link" style="font-size: 25px; cursor: pointer;">
+                                    < </p> </li> <li class="page-item" ng-click="next()">
+                                        <p class="page-link" style="font-size: 25px; cursor: pointer;"> > </p>
+                            </li>
+                            <li class="page-item" disabled="disabled">
+                                <button class="page-link" aria-label="Next" ng-click="last()" style="cursor: pointer;">
+                                    <span aria-hidden="true" style="font-size: 25px;">&raquo;</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

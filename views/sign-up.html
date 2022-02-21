@@ -1,0 +1,123 @@
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1"
+    ng-controller="signupCtrl" ng-init="student.gender = true; marks=0">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6 login-banner d-flex justify-content-center align-items-center">
+                        <img src="./img/sign-up.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-6 form-login">
+                        <h1 class="form-title text-center">Đăng ký</h1>
+                        <p class="text-center mt-4">
+                            <a href="#" class="form-login-social-icon"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="form-login-social-icon"><i class="fab fa-google"></i></a>
+                            <a href="#" class="form-login-social-icon"><i class="far fa-envelope"></i></a>
+                        </p>
+                        <p class="text-center mt-4">hoặc</p>
+                        <form name="formSignUp">
+                            <div class="form-group mt-3">
+                                <input type="text" class="form-control username" name="username_signup" id="username_signup" placeholder="Tài khoản"
+                                    ng-model="student.username" minlength="5" required>
+                                <span class="messageError mt-2" ng-show="formSignUp.username_signup.$dirty && formSignUp.username_signup.$invalid">
+                                    <small class="text-danger" ng-show="formSignUp.username_signup.$error.required">
+                                        Không được để trống tên tài khoản
+                                    </small>
+                                    <small class="text-danger" ng-show="formSignUp.username_signup.$error.minlength">
+                                        Tên tài khoản phải lớn hơn 5 ký tự
+                                    </small>
+                                </span>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="password" class="form-control password" name="password_signup" id="password_signup"
+                                    placeholder="********" ng-model="student.password" minlength="6" required autocomplete="required">
+                                <span class="messageError mt-2" ng-show="formSignUp.password_signup.$dirty && formSignUp.password_signup.$invalid">
+                                    <small class="text-danger" ng-show="formSignUp.password_signup.$error.required">
+                                        Không được để trống mật khẩu
+                                    </small>
+                                    <small class="text-danger" ng-show="formSignUp.password_signup.$error.minlength">
+                                        Mật khẩu phải lớn hơn 6 ký tự
+                                    </small>
+                                </span>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="password" class="form-control password" name="confirm_password" id="confirm_password"
+                                    placeholder="********" ng-model="confirm_password" required check-repass autocomplete="required">
+                                <span class="messageError mt-2" ng-show="formSignUp.confirm_password.$dirty && formSignUp.confirm_password.$invalid">
+                                    <small class="text-danger" ng-show="formSignUp.confirm_password.$error.required">
+                                        Vui lòng nhập lại mật khẩu
+                                    </small>
+                                    <small class="text-danger" ng-show="formSignUp.confirm_password.$invalid">
+                                        Mật khẩu không trùng nhau
+                                    </small>
+                                </span>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <input type="text" class="form-control username" name="fullname_signup" id="fullname_signup" placeholder="Họ và tên"
+                                    ng-model="student.fullname" minlength="5" required>
+                                <span class="messageError mt-2" ng-show="formSignUp.fullname_signup.$dirty && formSignUp.fullname_signup.$invalid">
+                                    <small class="text-danger" ng-show="formSignUp.fullname_signup.$error.required">
+                                        Không được để trống họ tên
+                                    </small>
+                                    <small class="text-danger" ng-show="formSignUp.fullname_signup.$error.minlength">
+                                        Họ tên phải lớn hơn 5 ký tự
+                                    </small>
+                                </span>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="email" class="form-control username" name="email_signup" id="email_signup" placeholder="Email"
+                                    ng-model="student.email" required>
+                                <span class="messageError mt-2" ng-show="formSignUp.email_signup.$dirty && formSignUp.email_signup.$invalid">
+                                    <small class="text-danger" ng-show="formSignUp.email_signup.$error.required">
+                                        Không được để trống email
+                                    </small>
+                                    <small class="text-danger" ng-show="formSignUp.email_signup.$error.email">
+                                        Email không đúng định dạng
+                                    </small>
+                                </span>
+                            </div>
+                            <div class="form-group mt-3" style="margin-left: 55px;">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender_signup" id="inlineRadio1" value="true"
+                                        ng-model="student.gender" ng-checked="student.gender == true">
+                                    <label class="form-check-label" for="inlineRadio1">Nam</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender_signup" id="inlineRadio2" value="false"
+                                        ng-model="student.gender" ng-checked="student.gender == false">
+                                    <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="text" class="form-control username" name="dob_signup" id="dob_signup" placeholder="Ngày sinh(dd-MM-yyyy)"
+                                    ng-model="student.birthday" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" required>
+                                <span class="messageError mt-2" ng-show="formSignUp.dob_signup.$dirty && formSignUp.dob_signup.$invalid">
+                                    <small class="text-danger" ng-show="formSignUp.dob_signup.$error.required">
+                                        Không được để trống ngày sinh
+                                    </small>
+                                    <small class="text-danger" ng-show="formSignUp.dob_signup.$error.pattern">
+                                        Không đúng định dạng ngày sinh
+                                    </small>
+                                </span>
+                            </div>
+                            <div class="form-login-button">
+                                <button class="btn btn-sign-up form-btn form-control" data-bs-dismiss="modal" ng-disabled="formSignUp.$invalid"
+                                    ng-click="signup()">Đăng
+                                    ký</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer mb-5">
+                Bạn đã có tài khoản ? <a class="" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" style="cursor: pointer;">Đăng
+                    nhập</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- form-sign-up -->

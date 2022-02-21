@@ -1,0 +1,59 @@
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" ng-controller="loginCtrl">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <!-- button exit -->
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
+            </div>
+            <!-- button exit -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6 login-banner ">
+                        <img src="./img/login.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-6 form-login">
+                        <h1 class="form-title text-center">Đăng nhập</h1>
+                        <p class="text-center mt-4">
+                            <a href="#" class="form-login-social-icon"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="form-login-social-icon"><i class="fab fa-google"></i></a>
+                            <a href="#" class="form-login-social-icon"><i class="far fa-envelope"></i></a>
+                        </p>
+                        <p class="text-center mt-4">hoặc</p>
+                        <form name="formLogin">
+                            <div class="form-group mt-5">
+                                <input type="text" class="form-control username" id="username_login" name="username_login" placeholder="Tài khoản"
+                                    ng-model="username_login" required>
+                                <span class="messageError mt-2" ng-show="formLogin.username_login.$dirty && formLogin.username_login.$invalid">
+                                    <small class="text-danger" ng-show="formLogin.username_login.$error.required">
+                                        Không được để trống tên tài khoản
+                                    </small>
+                                </span>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="password" class="form-control password" id="password_login" name="password_login" placeholder="********"
+                                    ng-model="password_login" required autocomplete="required">
+                                <span class="messageError mt-2" ng-show="formLogin.password_login.$dirty && formLogin.password_login.$invalid">
+                                    <small class="text-danger" ng-show="formLogin.password_login.$error.required">
+                                        Không được để trống mật khẩu
+                                    </small>
+                                </span>
+                            </div>
+                            <div class="forgot-password">
+                                <a data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" style="cursor: pointer;">Quên mật khẩu</a>
+                            </div>
+                            <div class="form-login-button">
+                                <button type="submit" ng-click="login()" ng-disabled="formLogin.$invalid" class="btn btn-login form-btn form-control"
+                                    data-bs-dismiss="modal">Đăng
+                                    nhập</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer mb-5">
+                Bạn chưa có tài khoản ?<a class="" class="btn btn-sign-up form-btn form-control" data-bs-target="#exampleModalToggle2"
+                    data-bs-toggle="modal" style="cursor: pointer;">Đăng ký</a>
+            </div>
+        </div>
+    </div>
+</div>

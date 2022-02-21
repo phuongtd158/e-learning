@@ -1,5 +1,5 @@
-const app = angular.module('my_app', ['ngRoute', ])
-    .config(($routeProvider) => {
+app.config(($routeProvider, $locationProvider) => {
+        $locationProvider.hashPrefix('');
         $routeProvider
             .when('/home', {
                 templateUrl: 'views/home.html',
@@ -19,7 +19,7 @@ const app = angular.module('my_app', ['ngRoute', ])
             .when('/feedback', {
                 templateUrl: 'views/feedback.html',
             })
-            .when('/quiz', {
+            .when('/quiz/:id', {
                 templateUrl: 'views/quiz.html',
             })
             .otherwise({
