@@ -1,0 +1,133 @@
+<div class="profile-wrapper" style="margin: 310px">
+    <div class="container ">
+        <div class="row">
+            <div class="col-4">
+                <img src="./img/user.png" alt="" class="img-fluid" />
+            </div>
+            <div class="col-8 ">
+                <div class="row ">
+                    <div class="col d-flex justify-content-between align-items-center">
+                        <h4 class="name">{{indexStudent.fullname}}</h4>
+                        <a class="name" data-bs-target="#profile" data-bs-toggle="modal" style="cursor: pointer;">Chỉnh sửa thông tin</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mt-3">
+                        <ul class="nav nav-tabs">
+                            <li class="active" style="margin-right: 20px;"><a data-bs-toggle="tab" href="#info">Thông tin cá nhân</a></li>
+                            <li><a data-bs-toggle="tab" href="#history">Lịch sử học</a></li>
+                        </ul>
+                        <div class="tab-content mt-3">
+                            <div id="info" class="tab-pane fade in active show">
+                                <ul class="list-unstyled">
+                                    <li class="d-flex justify-content-between mt-4">
+                                        <span style="font-weight: 600;"> Username: </span>
+                                        <span>{{students[indexStudent].username}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between mt-4">
+                                        <span style="font-weight: 600;">Họ và tên:
+                                        </span><span>{{students[indexStudent].fullname}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between mt-4">
+                                        <span style="font-weight: 600;">Email:</span>
+                                        <span>{{students[indexStudent].email}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between mt-4">
+                                        <span style="font-weight: 600;">Giới tính: </span>
+                                        <span>{{students[indexStudent].gender == true ? "Nam" : "Nữ"}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between mt-4">
+                                        <span style="font-weight: 600;">Ngày sinh:</span>
+                                        <span>{{students[indexStudent].birthday}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="history" class="tab-pane fade">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="profile" aria-hidden="true" aria-labelledby="profile" tabindex="-1" ng-init="student.gender = true; student.marks=0"
+        ng-controller="editProfileCtrl">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col form-login">
+                            <h1 class="form-title text-center">Chỉnh sửa thông tin</h1>
+                            <form name="formEditProfile">
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control username" name="username_editprofile" id="username_editprofile"
+                                        placeholder="Tài khoản" ng-model="student.username" minlength="5" disabled="disabled">
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control username" name="fullname_editprofile" id="fullname_editprofile"
+                                        placeholder="Họ và tên" ng-model="student.fullname" minlength="5" required>
+                                    <span class="messageError mt-2"
+                                        ng-show="formEditProfile.fullname_editprofile.$dirty && formEditProfile.fullname_editprofile.$invalid">
+                                        <small class="text-danger" ng-show="formEditProfile.fullname_editprofile.$error.required">
+                                            Không được để trống họ tên
+                                        </small>
+                                        <small class="text-danger" ng-show="formEditProfile.fullname_editprofile.$error.minlength">
+                                            Họ tên phải lớn hơn 5 ký tự
+                                        </small>
+                                    </span>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="email" class="form-control username" name="email_editprofile" id="email_editprofile"
+                                        placeholder="Email" ng-model="student.email" required>
+                                    <span class="messageError mt-2"
+                                        ng-show="formEditProfile.email_editprofile.$dirty && formEditProfile.email_editprofile.$invalid">
+                                        <small class="text-danger" ng-show="formEditProfile.email_editprofile.$error.required">
+                                            Không được để trống email
+                                        </small>
+                                        <small class="text-danger" ng-show="formEditProfile.email_editprofile.$error.email">
+                                            Email không đúng định dạng
+                                        </small>
+                                    </span>
+                                </div>
+                                <div class="form-group mt-3" style="margin-left: 105px;">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender_editprofile" id="inlineRadio3" value="true"
+                                            ng-model="student.gender" ng-checked="student.gender == true">
+                                        <label class="form-check-label" for="inlineRadio3">Nam</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender_editprofile" id="inlineRadio4" value="false"
+                                            ng-model="student.gender" ng-checked="student.gender == false">
+                                        <label class="form-check-label" for="inlineRadio4">Nữ</label>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control username" name="dob_editprofile" id="dob_editprofile"
+                                        placeholder="Ngày sinh(dd-MM-yyyy)" ng-model="student.birthday" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" required>
+                                    <span class="messageError mt-2"
+                                        ng-show="formEditProfile.dob_editprofile.$dirty && formEditProfile.dob_editprofile.$invalid">
+                                        <small class="text-danger" ng-show="formEditProfile.dob_editprofile.$error.required">
+                                            Không được để trống ngày sinh
+                                        </small>
+                                        <small class="text-danger" ng-show="formEditProfile.dob_editprofile.$error.pattern">
+                                            Không đúng định dạng ngày sinh
+                                        </small>
+                                    </span>
+                                </div>
+                                <div class="form-login-button">
+                                    <button class="btn btn-sign-up form-btn form-control" data-bs-dismiss="modal"
+                                        ng-disabled="formEditProfile.$invalid" ng-click="editProfile()">Chỉnh sửa</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- form-sign-up -->
+</div>

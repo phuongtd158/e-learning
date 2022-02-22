@@ -37,6 +37,7 @@ app.run(($rootScope, $http) => {
             allowOutsideClick: false,
             timer: 1600
         })
+        window.location.href = '#home';
     }
 
 

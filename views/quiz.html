@@ -40,10 +40,10 @@
                             <h6>Máy chủ:</h6> E-LEARNING
                         </li>
                         <li class="mt-3" style="margin-left: 20px;">
-                            <h6>Tên đăng nhập:</h6> {{indexStudent.username}}
+                            <h6>Tên đăng nhập:</h6> {{students[indexStudent].username}}
                         </li>
                         <li class="mt-3" style="margin-left: 20px;">
-                            <h6>Điểm:</h6> {{indexStudent.marks}}
+                            <h6>Điểm:</h6> {{students[indexStudent].marks}}
                         </li>
                         <li class="mt-3" style="margin-left: 20px;">
                             <h6>Các khóa học khác: </h6><a href="#course">Đi tới các khóa học khác</a>
@@ -63,8 +63,8 @@
                     </div>
                     <div class="row p-0">
                         <button type="button" class="btn btn-primary waves-effect col-lg-6 m-0" data-bs-dismiss="modal">Không</button>
-                        <button ng-click="submit()" class="btn btn-info waves-effect col-lg-6 m-0" data-bs-dismiss="modal">Có <i
-                                class="fas fa-sign-in-alt ml-1"></i></button>
+                        <button ng-click="submit(); elem[indexQuestion].sub = 0" class="btn btn-info waves-effect col-lg-6 m-0"
+                            data-bs-dismiss="modal">Có <i class="fas fa-sign-in-alt ml-1"></i></button>
                     </div>
                 </div>
             </div>
@@ -72,64 +72,63 @@
     </div>
 
     <div class="quiz-wrapper hidee" style="margin: 220px 100px;">
-        <form name="formTest" class="disabled">
 
-            <div class="container">
+
+        <div class="container">
+            <div class="row">
+                <h2 class="quiz-time text-center mb-3">
+                    <span id="min">00</span>:<span id="sec">00</span>
+                </h2>
+            </div>
+            <div class="row quiz-detail">
                 <div class="row">
-                    <h2 class="quiz-time text-center mb-3">
-                        <span id="min">00</span>:<span id="sec">00</span>
-                    </h2>
-                </div>
-                <div class="row quiz-detail">
-                    <div class="row">
-                        <div class="col d-flex justify-content-between border-bottom pb-4">
-                            <span class="quiz-title">{{subject.Name}} </span>
-                            <span class="quiz-mark quiz-title">{{indexQuestion+1}}/{{questions.length}}</span>
-                        </div>
+                    <div class="col d-flex justify-content-between border-bottom pb-4">
+                        <span class="quiz-title">{{subject.Name}} </span>
+                        <span class="quiz-mark quiz-title">{{indexQuestion+1}}/{{questions.length}}</span>
                     </div>
-                    <div class="row quiz-info">
-                        <div class="col">
-                            <div class="quiz-question mt-4">{{indexQuestion+1}}: {{questions[indexQuestion].Text}}</div>
-                            <ul class="list-unstyled list-quiz mt-3">
+                </div>
+                <div class="row quiz-info">
+                    <div class="col">
+                        <div class="quiz-question mt-4">{{indexQuestion+1}}: {{questions[indexQuestion].Text}}</div>
+                        <form name="formTest" class="{{(elem[indexQuestion].sub==0)?'disabled':''}}">
+                            <fieldset class="list-unstyled list-quiz mt-3" ng-disabled="elem[indexQuestion].sub==0">
                                 <li ng-repeat="answer in questions[indexQuestion].Answers">
                                     <input type="radio" name="answer" class="answer" id="answer{{answer.Id}}" value="{{answer.Id}}" required
                                         ng-model="elem[indexQuestion].answer" required>
                                     <label class="quiz-answer" for="answer{{answer.Id}}">
                                         {{answer.Text}}</label>
                                 </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row quiz-controller ">
-                        <div class="col d-flex justify-content-between align-items-center">
-                            <button class="btn btn-sign-up" type="submit" data-bs-toggle="modal" data-bs-target="#modalLRFormDemo"
-                                ng-disabled="formTest.$invalid">Submit</button>
-
-                            <nav aria-label="Page navigation example" class="">
-                                <ul class="pagination ">
-                                    <li class="page-item">
-                                        <a class="page-link" aria-label="Previous" ng-click="first()" style="cursor: pointer;">
-                                            <span aria-hidden="true" style="font-size: 25px;">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item" ng-click="prev(indexQuestion -1)">
-                                        <p class="page-link" style="font-size: 25px; cursor: pointer;">
-                                            < </p> </li> <li class="page-item" ng-click="next(indexQuestion+1)">
-                                                <p class="page-link" style="font-size: 25px; cursor: pointer;"> > </p>
-                                    </li>
-                                    <li class="page-item" disabled="disabled">
-                                        <button class="page-link disabled" aria-label="Next" ng-click="last()" style="cursor: pointer;">
-                                            <span aria-hidden="true" style="font-size: 25px;">&raquo;</span>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
-
+                <div class="row quiz-controller ">
+                    <div class="col d-flex justify-content-between align-items-center">
+                        <button class="btn btn-sign-up" type="submit" data-bs-toggle="modal" data-bs-target="#modalLRFormDemo"
+                            ng-disabled="formTest.$invalid || elem[indexQuestion].sub == 0">Submit</button>
+                        <nav aria-label="Page navigation example" class="">
+                            <ul class="pagination ">
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Previous" ng-click="first()" style="cursor: pointer;">
+                                        <span aria-hidden="true" style="font-size: 25px;">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" ng-click="prev(indexQuestion -1)">
+                                    <p class="page-link" style="font-size: 25px; cursor: pointer;">
+                                        < </p> </li> <li class="page-item" ng-click="next(indexQuestion+1)">
+                                            <p class="page-link" style="font-size: 25px; cursor: pointer;"> > </p>
+                                </li>
+                                <li class="page-item" disabled="disabled">
+                                    <button class="page-link disabled" aria-label="Next" ng-click="last()" style="cursor: pointer;">
+                                        <span aria-hidden="true" style="font-size: 25px;">&raquo;</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
         <div class="row">
             <div class="col"> <button class="btn btn-sign-up  m-auto d-block mt-5" ng-click="endQuiz()">Kết thúc bài thi</button></div>
         </div>

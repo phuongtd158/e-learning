@@ -4,6 +4,7 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
     $scope.elem = [];
     $scope.mark = 0;
     $scope.timer = 900;
+    $scope.isSubmitted = undefined;
 
     var course = document.querySelector('#course');
     var mark = document.querySelector('#mark');
@@ -24,11 +25,8 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
     })
 
     $scope.startQuiz = () => {
-
         course.classList.toggle('hidee');
         quiz.classList.remove('hidee');
-
-        $scope.timer = 900;
     }
 
     $scope.endQuiz = () => {
@@ -106,8 +104,8 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
         if ($scope.timer > 0) {
             $scope.timer--;
         } else {
-            console.log($rootScope.indexStudent);
-            $rootScope.indexStudent.marks += $scope.mark;
+            $rootScope.student.marks = (parseInt($rootScope.student.marks) + $scope.mark);
+            $rootScope.students[$rootScope.indexStudent] = angular.copy($rootScope.student);
             course.classList.toggle('hidee');
             quiz.classList.toggle('hidee');
             mark.classList.remove('hidee');

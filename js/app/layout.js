@@ -22,12 +22,15 @@ app.config(($routeProvider, $locationProvider) => {
             .when('/quiz/:id', {
                 templateUrl: 'views/quiz.html',
             })
-            .otherwise({
-                redirectTo: 'home',
+            .when('/profile', {
+                templateUrl: 'views/profile.html',
             })
-    })
-    .controller('my_controller', function ($scope) {
-
+            .when('/edit-password', {
+                templateUrl: 'views/edit-password.html',
+            })
+            .otherwise({
+                redirectTo: '/home',
+            })
     })
 
     // Hiển thị loading khi đang load template

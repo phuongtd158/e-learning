@@ -14,7 +14,8 @@ app.controller('loginCtrl', ($scope, $rootScope) => {
                 $rootScope.isLogin = true;
                 $rootScope.student = $rootScope.students[i];
                 window.location.href = '#!home';
-                $rootScope.indexStudent = $rootScope.students[i];
+                $rootScope.indexStudent = i;
+                console.log($rootScope.indexStudent, $rootScope.students[$rootScope.indexStudent]);
                 return;
             } else {
                 Swal.fire({
