@@ -5,6 +5,8 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
     $scope.mark = 0;
     $scope.timer = 900;
     $scope.isSubmitted = undefined;
+    $rootScope.subjectH = [];
+    $rootScope.subject = {};
 
     var course = document.querySelector('#course');
     var mark = document.querySelector('#mark');
@@ -54,10 +56,13 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
 
             }
         })
+
+        $rootScope.subject.name = $scope.subject.Name;
+        $rootScope.subject.mark = $scope.mark;
+        $rootScope.subject.date = new Date();
+
     }
-
-
-
+    $rootScope.subjectH.push($rootScope.subject);
     $scope.submit = () => {
 
         //Nếu không chọn sẽ không cho phép submit

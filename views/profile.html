@@ -1,4 +1,4 @@
-<div class="profile-wrapper" style="margin: 310px">
+<div class="profile-wrapper" style="margin: 310px" ng-controller="editProfileCtrl">
     <div class="container ">
         <div class="row">
             <div class="col-4">
@@ -42,7 +42,18 @@
                                 </ul>
                             </div>
                             <div id="history" class="tab-pane fade">
-
+                                <table class="table">
+                                    <tr>
+                                        <th>Tên môn học</th>
+                                        <th>Điểm</th>
+                                        <th>Ngày làm bài</th>
+                                    </tr>
+                                    <tr ng-repeat="h in history">
+                                        <td>{{h.name}}</td>
+                                        <td>{{h.mark}}</td>
+                                        <td>{{h.date | date:'dd-MM-yyyy'}}</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -50,8 +61,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="profile" aria-hidden="true" aria-labelledby="profile" tabindex="-1" ng-init="student.gender = true; student.marks=0"
-        ng-controller="editProfileCtrl">
+    <div class="modal fade" id="profile" aria-hidden="true" aria-labelledby="profile" tabindex="-1" ng-init="student.gender = true; student.marks=0">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
