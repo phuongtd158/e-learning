@@ -12,9 +12,26 @@ app.controller('courseCtrl', ($scope, $rootScope, $routeParams) => {
                 icon: 'error',
             })
         } else {
-            $routeParams.id = id;
-            window.location.href = "#quiz/" + $routeParams.id;
+            Swal.fire({
+                title: 'Bắt đầu thi?',
+                text: "Bạn đã sẳn sàng!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có! Bắt đầu thi.',
+                cancelButtonText: 'Chưa'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $routeParams.id = id;
+                    window.location.href = "#quiz/" + $routeParams.id;
+                } else {
+                    window.location.href = "#course";
+                }
+            })
+
         }
+
     }
 
     $scope.first = () => {

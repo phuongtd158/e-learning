@@ -1,9 +1,16 @@
-app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http) => {
-    $scope.isStarted = false;
+app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) => {
+
     $scope.indexQuestion = 0;
     $scope.elem = [];
     $scope.mark = 0;
-    $scope.check = false;
+    $scope.timer = 900;
+
+    var course = document.querySelector('#course');
+    var mark = document.querySelector('#mark');
+    var quiz = document.querySelector('.quiz-wrapper');
+    var min = document.getElementById('min');
+    var sec = document.getElementById('sec');
+
     $rootScope.subjects.forEach(ar => {
         if (ar.Id == $routeParams.id) {
             $scope.subject = angular.copy(ar);
@@ -17,26 +24,99 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http) => {
     })
 
     $scope.startQuiz = () => {
-      
-        window.location.href = "#quiz/" + $routeParams.id;
+
+        course.classList.toggle('hidee');
+        quiz.classList.remove('hidee');
+
+        $scope.timer = 900;
+    }
+
+    $scope.endQuiz = () => {
         Swal.fire({
-            title: 'Bắt đầu thi?',
-            text: "Bạn đã sẳn sàng!",
+            title: 'Bạn có chắc không?',
+            text: "Bạn thật sự muốn kết thúc bài thi!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Có! Bắt đầu thi.',
-            cancelButtonText: 'Chưa'
-        }).then((r) => {
-            if (r.isConfirmed) {
-                $scope.isStarted = true;
-            } else {
-                $scope.isStarted = false;
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không'
+        }).then((result) => {
+            if (result.value) {
+                $scope.timer = 3;
+                Swal.fire({
+                    title: 'Kết thúc bài thi',
+                    text: "Bài thi sẽ kết thúc sau 3 giây",
+                    icon: 'success',
+                    showConfirmButton: false,
+                    closeOnClickOutside: false,
+                    allowOutsideClick: false,
+                    timer: 4000
+                });
+
             }
-            console.log($scope.isStarted, r)
         })
     }
+
+
+
+    $scope.submit = () => {
+
+        //Nếu không chọn sẽ không cho phép submit
+        if (!$('input[name="answer"]:checked').length) {
+            return;
+        }
+
+        var ans = $('input[name="answer"]:checked').val();
+        if (ans == $scope.questions[$scope.indexQuestion].AnswerId) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Chúc mừng bạn đã chọn đúng!',
+                text: 'Bạn được cộng ' + $scope.questions[$scope.indexQuestion].Marks + ' điểm',
+                showConfirmButton: false,
+                timer: 1200
+            });
+            $scope.mark += $scope.questions[$scope.indexQuestion].Marks;
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Rất tiết! bạn đã chọn sai đáp án.',
+                showConfirmButton: false,
+                timer: 1200
+            });
+        }
+    }
+
+    const formatTime = (val) => {
+        var valString = val + "";
+        if (valString.length < 2) {
+            return "0" + valString;
+        } else {
+            return valString;
+        }
+    }
+
+    const setTime = () => {
+        sec.innerHTML = formatTime($scope.timer % 60);
+        min.innerHTML = formatTime(parseInt($scope.timer / 60));
+    }
+
+    var stop = $interval(() => {
+        setTime();
+        if ($scope.timer > 0) {
+            $scope.timer--;
+        } else {
+            console.log($rootScope.indexStudent);
+            $rootScope.indexStudent.marks += $scope.mark;
+            course.classList.toggle('hidee');
+            quiz.classList.toggle('hidee');
+            mark.classList.remove('hidee');
+            $interval.cancel(stop);
+            course.classList.toggle('hidee');
+        }
+
+    }, 1000);
+
 
     $scope.first = () => {
         $scope.indexQuestion = 0;
@@ -56,35 +136,5 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http) => {
 
     $scope.last = () => {
         $scope.indexQuestion = $scope.questions.length - 1;
-    }
-
-    $scope.submit = () => {
-        $scope.check = true;
-        //Nếu không chọn sẽ không cho phép submit
-        if (!$('input[name="answer"]:checked').length) {
-            return;
-        }
-
-        var ans = $('input[name="answer"]:checked').val();
-        if (ans == $scope.questions[$scope.indexQuestion].AnswerId) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Chúc mừng bạn đã chọn đúng!',
-                text: 'Bạn được cộng ' + $scope.questions[$scope.indexQuestion].Marks + ' điểm',
-                showConfirmButton: false,
-                timer: 1200
-            });
-
-            $scope.mark += $scope.questions[$scope.indexQuestion].Marks;
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Rất tiết! bạn đã chọn sai đáp án.',
-                showConfirmButton: false,
-                timer: 1200
-            });
-
-        }
-        console.log($scope.check);
     }
 })
