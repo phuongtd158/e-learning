@@ -24,14 +24,3 @@ navBars.forEach((navBar) => {
         navCollapse.classList.remove('show');
     })
 })
-
-// const course = document.querySelector('.course-info-wrapper');
-// const quiz = document.querySelector('.quiz-wrapper');
-// const btnStart = document.querySelector('.btn-start');
-
-// btnStart.addEventListener('click', function () {
-//     quiz.classList.add('show');
-//     course.classList.add('hidee');
-// })
-
-// console.log(course, quiz);

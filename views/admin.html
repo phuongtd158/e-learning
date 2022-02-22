@@ -1,0 +1,160 @@
+ <div class="container" style="margin-top: 130px; margin-bottom:200px">
+     <header class="mb-2">
+         <h1>E-LEARNING Management</h1>
+     </header>
+     <hr>
+     <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
+         <li class="nav-item" role="presentation">
+             <button class="nav-link active" id="home-tab0" data-bs-toggle="tab" data-bs-target="#home0" type="button" role="tab" aria-controls="home"
+                 aria-selected="true">
+                 Quản lý người dùng
+             </button>
+         </li>
+         <li class="nav-item" role="presentation">
+             <button class="nav-link" id="profile-tab0" data-bs-toggle="tab" data-bs-target="#profile0" type="button" role="tab"
+                 aria-controls="profile" aria-selected="false">
+                 Quản lý khóa học
+             </button>
+         </li>
+     </ul>
+     <div class="tab-content" id="myTabContent0">
+         <div class="tab-pane fade show active" id="home0" role="tabpanel" aria-labelledby="home-tab0" ng-controller="user"
+             ng-init="student.role==false; student.gender == true">
+             <div class="row">
+                 <div class="col-sm-3 col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); margin-right: 10px; height:500px">
+                     <h5 class="text-center mt-2">Thông tin người dùng</h5>
+                     <form>
+                         <div class="form-group mt-2">
+                             <label for="">Tên đăng nhập</label>
+                             <input type="text" class="form-control" ng-model="student.username">
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Họ và tên</label>
+                             <input type="text" class="form-control" ng-model="student.fullname">
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Email</label>
+                             <input type="text" class="form-control" ng-model="student.email">
+                         </div>
+                         <div class="form-group mt-2">
+                             <p for="" class="mt-2">Giới tính</p>
+                             <div class="form-check form-check-inline mt-1">
+                                 <input class="form-check-input" type="radio" name="gender1" id="gender1" value="true"
+                                     ng-checked="student.gender == true" ng-model="student.gender">
+                                 <label class="form-check-label" for="gender1">Nam</label>
+                             </div>
+                             <div class="form-check form-check-inline">
+                                 <input class="form-check-input" type="radio" name="gender2" id="gender2" value="false"
+                                     ng-checked="student.gender == false" ng-model="student.gender">
+                                 <label class="form-check-label" for="gender2">Nữ</label>
+                             </div>
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Ngày sinh</label>
+                             <input type="text" class="form-control" ng-model="student.birthday">
+                         </div>
+                         <div class="form-group mt-2">
+                             <p class="mt-2">Quyền</p>
+                             <div class="form-check form-check-inline mt-1">
+                                 <input class="form-check-input" type="radio" name="role" id="role1" value="true" ng-checked="student.role == true"
+                                     ng-model="student.role">
+                                 <label class="form-check-label" for="role1">Admin</label>
+                             </div>
+                             <div class="form-check form-check-inline">
+                                 <input class="form-check-input" type="radio" name="role" id="role2" value="false" ng-checked="student.role == false"
+                                     ng-model="student.role">
+                                 <label class="form-check-label" for="role2">User</label>
+                             </div>
+                         </div>
+                         <div class="form-group mt-3 mb-3">
+                             <button class="btn btn-primary" ng-click="save()">Lưu</button>
+                             <button class="btn btn-secondary" ng-click="update()">Cập nhật</button>
+                             <button class="btn btn-success" ng-click="reset()">Làm mới</button>
+                         </div>
+                     </form>
+                 </div>
+                 <div class="col-sm col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); overflow: auto; height:500px">
+                     <h5 class="text-center mt-2">Danh sách người dùng</h5>
+                     <table class="table table-responsive">
+                         <thead>
+                             <tr>
+                                 <th>ID</th>
+                                 <th>Tên dăng nhập</th>
+                                 <th>Họ và tên</th>
+                                 <th>Email</th>
+                                 <th>GT</th>
+                                 <th>Ngày sinh</th>
+                                 <th>Quyền</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr ng-repeat="student in students">
+                                 <td>{{student.id}}</td>
+                                 <td>{{student.username}}</td>
+                                 <td>{{student.fullname}}</td>
+                                 <td>{{student.email}}</td>
+                                 <td>{{student.gender == true}}</td>
+                                 <td>{{student.birthday}}</td>
+                                 <td>{{student.role}}</td>
+                                 <td>
+                                     <button class="btn btn-warning" ng-click="edit($index)">Sửa</button>
+                                     <button class="btn btn-danger" ng-click="delete($index)">Xóa</button>
+                                 </td>
+                             </tr>
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+         </div>
+         <div class="tab-pane fade" id="profile0" role="tabpanel" aria-labelledby="profile-tab0" ng-controller="quiz">
+             <div class="row">
+                 <div class="col-sm-3 col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); margin-right: 10px; height:500px">
+                     <h5 class="text-center mt-2">Thông tin khóa học</h5>
+                     <form>
+                         <div class="form-group mt-2">
+                             <label for="">ID</label>
+                             <input type="text" class="form-control" ng-model="subject.Id">
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Tên khóa học</label>
+                             <input type="text" class="form-control" ng-model="subject.Name">
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Logo</label>
+                             <input type="file" id="img" class="form-control" ng-model="subject.Logo">
+                         </div>
+                         <div class="form-group mt-4 mb-3">
+                             <button class="btn btn-primary" ng-click="save()">Lưu</button>
+                             <button class="btn btn-secondary" ng-click="update()">Cập nhật</button>
+                             <button class="btn btn-success" ng-click="reset()">Làm mới</button>
+                         </div>
+                     </form>
+                 </div>
+                 <div class="col-sm col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); overflow: auto; height:500px">
+                     <h5 class="text-center mt-2">Danh sách khóa học</h5>
+                     <table class="table">
+                         <thead>
+                             <tr>
+                                 <th>ID</th>
+                                 <th>Name</th>
+                                 <th>Logo</th>
+                                 <th></th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr ng-repeat="subject in subjects">
+                                 <td>{{subject.Id}}</td>
+                                 <td>{{subject.Name}}</td>
+                                 <td>{{subject.Logo}}</td>
+                                 <td>
+                                     <button class="btn btn-warning" ng-click="edit($index)">Sửa</button>
+                                     <button class="btn btn-danger" ng-click="delete($index)">Xóa</button>
+                                 </td>
+                             </tr>
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>

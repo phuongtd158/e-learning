@@ -17,7 +17,18 @@ app.controller('editPassCtrl', ($scope, $rootScope, $http) => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Đổi mật khẩu thành công!',
-                });
+                    text: "Bạn có muốn quay lại trang chủ!",
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Có!',
+                    cancelButtonText: 'Không'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = '#home';
+                    }
+                })
 
             } else {
                 Swal.fire({

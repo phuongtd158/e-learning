@@ -1,5 +1,5 @@
 <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1"
-    ng-controller="signupCtrl" ng-init="student.gender = true; student.marks=0">
+    ng-controller="signupCtrl" ng-init="student.gender = true; student.marks=0; student.role=false">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,7 +21,7 @@
                         <form name="formSignUp">
                             <div class="form-group mt-3">
                                 <input type="text" class="form-control username" name="username_signup" id="username_signup" placeholder="Tài khoản"
-                                    ng-model="student.username" minlength="5" required>
+                                    ng-model="student.username" minlength="5" required check-user>
                                 <span class="messageError mt-2" ng-show="formSignUp.username_signup.$dirty && formSignUp.username_signup.$invalid">
                                     <small class="text-danger" ng-show="formSignUp.username_signup.$error.required">
                                         Không được để trống tên tài khoản
@@ -29,6 +29,9 @@
                                     <small class="text-danger" ng-show="formSignUp.username_signup.$error.minlength">
                                         Tên tài khoản phải lớn hơn 5 ký tự
                                     </small>
+                                    <!-- <small class="text-danger" ng-show="formSignUp.username_signup.$invalid">
+                                        Tên tài khoản đã tồn tại
+                                    </small> -->
                                 </span>
                             </div>
                             <div class="form-group mt-3">

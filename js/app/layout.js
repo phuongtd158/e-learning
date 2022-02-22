@@ -28,6 +28,9 @@ app.config(($routeProvider, $locationProvider) => {
             .when('/edit-password', {
                 templateUrl: 'views/edit-password.html',
             })
+            .when('/admin', {
+                templateUrl: 'views/admin.html',
+            })
             .otherwise({
                 redirectTo: '/home',
             })
