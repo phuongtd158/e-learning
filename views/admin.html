@@ -16,17 +16,27 @@
                  Quản lý khóa học
              </button>
          </li>
+         <li class="nav-item" role="presentation">
+             <button class="nav-link" id="profile-tab1" data-bs-toggle="tab" data-bs-target="#profile1" type="button" role="tab"
+                 aria-controls="profile1" aria-selected="false">
+                 Quản lý câu hỏi
+             </button>
+         </li>
      </ul>
      <div class="tab-content" id="myTabContent0">
          <div class="tab-pane fade show active" id="home0" role="tabpanel" aria-labelledby="home-tab0" ng-controller="user"
-             ng-init="student.role==false; student.gender == true">
+             ng-init="student.role==0; student.gender == 1">
              <div class="row">
-                 <div class="col-sm-3 col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); margin-right: 10px; height:500px">
+                 <div class="col-sm-3 col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); margin-right: 10px; height:600px">
                      <h5 class="text-center mt-2">Thông tin người dùng</h5>
                      <form>
                          <div class="form-group mt-2">
                              <label for="">Tên đăng nhập</label>
-                             <input type="text" class="form-control" ng-model="student.username">
+                             <input type="text" class="form-control" ng-disabled="flag==1" ng-model="student.username">
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Mật khẩu</label>
+                             <input type="text" class="form-control" ng-model="student.password">
                          </div>
                          <div class="form-group mt-2">
                              <label for="">Họ và tên</label>
@@ -39,13 +49,13 @@
                          <div class="form-group mt-2">
                              <p for="" class="mt-2">Giới tính</p>
                              <div class="form-check form-check-inline mt-1">
-                                 <input class="form-check-input" type="radio" name="gender1" id="gender1" value="true"
+                                 <input class="form-check-input" type="radio" name="gender1" id="gender1" value="1"
                                      ng-checked="student.gender == true" ng-model="student.gender">
                                  <label class="form-check-label" for="gender1">Nam</label>
                              </div>
                              <div class="form-check form-check-inline">
-                                 <input class="form-check-input" type="radio" name="gender2" id="gender2" value="false"
-                                     ng-checked="student.gender == false" ng-model="student.gender">
+                                 <input class="form-check-input" type="radio" name="gender1" id="gender2" value="0"
+                                     ng-checked="student.gender != true" ng-model="student.gender">
                                  <label class="form-check-label" for="gender2">Nữ</label>
                              </div>
                          </div>
@@ -56,12 +66,12 @@
                          <div class="form-group mt-2">
                              <p class="mt-2">Quyền</p>
                              <div class="form-check form-check-inline mt-1">
-                                 <input class="form-check-input" type="radio" name="role" id="role1" value="true" ng-checked="student.role == true"
+                                 <input class="form-check-input" type="radio" name="role" id="role1" value="1" ng-checked="student.role == 1"
                                      ng-model="student.role">
                                  <label class="form-check-label" for="role1">Admin</label>
                              </div>
                              <div class="form-check form-check-inline">
-                                 <input class="form-check-input" type="radio" name="role" id="role2" value="false" ng-checked="student.role == false"
+                                 <input class="form-check-input" type="radio" name="role" id="role2" value="0" ng-checked="student.role != 1"
                                      ng-model="student.role">
                                  <label class="form-check-label" for="role2">User</label>
                              </div>
@@ -73,13 +83,14 @@
                          </div>
                      </form>
                  </div>
-                 <div class="col-sm col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); overflow: auto; height:500px">
+                 <div class="col-sm col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); overflow: auto; height:600px">
                      <h5 class="text-center mt-2">Danh sách người dùng</h5>
                      <table class="table table-responsive">
                          <thead>
                              <tr>
-                                 <th>ID</th>
+                                 <th>STT</th>
                                  <th>Tên dăng nhập</th>
+                                 <th>Mật khẩu</th>
                                  <th>Họ và tên</th>
                                  <th>Email</th>
                                  <th>GT</th>
@@ -89,13 +100,14 @@
                          </thead>
                          <tbody>
                              <tr ng-repeat="student in students">
-                                 <td>{{student.id}}</td>
+                                 <td>{{$index+1}}</td>
                                  <td>{{student.username}}</td>
+                                 <td>{{student.password}}</td>
                                  <td>{{student.fullname}}</td>
                                  <td>{{student.email}}</td>
-                                 <td>{{student.gender == true}}</td>
+                                 <td>{{student.gender == 1 ?"Nam":"Nữ"}}</td>
                                  <td>{{student.birthday}}</td>
-                                 <td>{{student.role}}</td>
+                                 <td>{{student.role == 1?"Admin":"User"}}</td>
                                  <td>
                                      <button class="btn btn-warning" ng-click="edit($index)">Sửa</button>
                                      <button class="btn btn-danger" ng-click="delete($index)">Xóa</button>
@@ -108,20 +120,20 @@
          </div>
          <div class="tab-pane fade" id="profile0" role="tabpanel" aria-labelledby="profile-tab0" ng-controller="quiz">
              <div class="row">
-                 <div class="col-sm-3 col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); margin-right: 10px; height:500px">
+                 <div class="col-sm-3 col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); margin-right: 10px; height:600px">
                      <h5 class="text-center mt-2">Thông tin khóa học</h5>
                      <form>
                          <div class="form-group mt-2">
                              <label for="">ID</label>
-                             <input type="text" class="form-control" ng-model="subject.Id">
+                             <input type="text" class="form-control" ng-disabled="flag == 1" ng-model="subject.Id">
                          </div>
                          <div class="form-group mt-2">
                              <label for="">Tên khóa học</label>
                              <input type="text" class="form-control" ng-model="subject.Name">
                          </div>
                          <div class="form-group mt-2">
-                             <label for="">Logo</label>
-                             <input type="file" id="img" class="form-control" ng-model="subject.Logo">
+                             <label for="">Link hình ảnh</label>
+                             <input type="text" id="img" class="form-control" ng-model="subject.Logo">
                          </div>
                          <div class="form-group mt-4 mb-3">
                              <button class="btn btn-primary" ng-click="save()">Lưu</button>
@@ -130,11 +142,12 @@
                          </div>
                      </form>
                  </div>
-                 <div class="col-sm col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); overflow: auto; height:500px">
+                 <div class="col-sm col-12 mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); overflow: auto; height:600px">
                      <h5 class="text-center mt-2">Danh sách khóa học</h5>
                      <table class="table">
                          <thead>
                              <tr>
+                                 <th>STT</th>
                                  <th>ID</th>
                                  <th>Name</th>
                                  <th>Logo</th>
@@ -143,11 +156,218 @@
                          </thead>
                          <tbody>
                              <tr ng-repeat="subject in subjects">
+                                 <td>{{$index+1}}</td>
                                  <td>{{subject.Id}}</td>
                                  <td>{{subject.Name}}</td>
                                  <td>{{subject.Logo}}</td>
                                  <td>
                                      <button class="btn btn-warning" ng-click="edit($index)">Sửa</button>
+                                     <button class="btn btn-danger" ng-click="delete($index)">Xóa</button>
+                                 </td>
+                             </tr>
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+         </div>
+
+
+
+
+
+
+
+         <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="profile-tab1" ng-controller="question">
+             <div class="row">
+                 <div class="col mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); overflow: auto; height:600px">
+                     <h5 class="text-center mt-2">Danh sách câu hỏi</h5>
+                     <!-- <form>
+                         <div class="form-group mt-2">
+                             <label for="">Môn học</label>
+                             <select name="" id="" class="form-select">
+                                 <option ng-repeat="subject in subjects" value="{{subject.Id}}">{{subject.Name}}</option>
+                             </select>
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Nội dung câu hỏi</label>
+                             <textarea type="text" class="form-control" ng-model="quiz.Question"></textarea>
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Điểm</label>
+                             <input type="text" class="form-control" ng-model="quiz.mark">
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Đáp án A</label>
+                             <input type="text" class="form-control" ng-model="quiz.AnswerA">
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Đáp án B</label>
+                             <input type="text" class="form-control" ng-model="quiz.AnswerB">
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Đáp án C</label>
+                             <input type="text" class="form-control" ng-model="quiz.AnswerC">
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Đáp án D</label>
+                             <input type="text" class="form-control" ng-model="quiz.AnswerD">
+                         </div>
+                         <div class="form-group mt-2">
+                             <label for="">Đáp án đúng</label>
+                             <select name="" id="" class="form-select">
+                                 <option value="">Đáp án A</option>
+                                 <option value="">Đáp án B</option>
+                                 <option value="">Đáp án C</option>
+                                 <option value="">Đáp án D</option>
+                             </select>
+                         </div>
+                     </form> -->
+                     <div class="form-group mt-2 row">
+                         <div class="col-11">
+                             <label for="">Môn học</label>
+                             <select name="" id="sb" class="form-select" ng-click="change()">
+                                 <option ng-repeat="subject in subjects" value="{{subject.Id}}">{{subject.Name}}</option>
+                             </select>
+                         </div>
+                         <div class="col-1">
+                             <button class="btn btn-primary" style="margin-top:23px" data-bs-toggle="modal"
+                                 data-bs-target="#exampleModal">Thêm</button>
+
+
+                             <!-- Modal add-->
+                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog modal-dialog-centered">
+                                     <div class="modal-content">
+                                         <div class="modal-header">
+                                             <h5 class="modal-title" id="exampleModalLabel">Thêm mới câu hỏi</h5>
+                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                         </div>
+                                         <div class="modal-body">
+                                             <form>
+                                                 <div class="form-group mt-2">
+                                                     <label for="">Nội dung câu hỏi</label>
+                                                     <textarea type="text" class="form-control" ng-model="question.Text"></textarea>
+                                                 </div>
+                                                 <div class="form-group mt-2">
+                                                     <label for="">Điểm</label>
+                                                     <input type="text" class="form-control" ng-model="question.Marks">
+                                                 </div>
+                                                 <div class="form-group mt-2">
+                                                     <label for="">Đáp án A</label>
+                                                     <input type="text" class="form-control" ng-model="question.Answers[0].Text">
+                                                 </div>
+                                                 <div class="form-group mt-2">
+                                                     <label for="">Đáp án B</label>
+                                                     <input type="text" class="form-control" ng-model="question.Answers[1].Text">
+                                                 </div>
+                                                 <div class="form-group mt-2">
+                                                     <label for="">Đáp án C</label>
+                                                     <input type="text" class="form-control" ng-model="question.Answers[2].Text">
+                                                 </div>
+                                                 <div class="form-group mt-2">
+                                                     <label for="">Đáp án D</label>
+                                                     <input type="text" class="form-control" ng-model="question.Answers[3].Text">
+                                                 </div>
+                                                 <div class="form-group mt-2">
+                                                     <label for="">Đáp án đúng</label>
+                                                     <select name="" id="" class="form-select">
+                                                         <option value="">Đáp án A</option>
+                                                         <option value="">Đáp án B</option>
+                                                         <option value="">Đáp án C</option>
+                                                         <option value="">Đáp án D</option>
+                                                     </select>
+                                                 </div>
+                                             </form>
+                                         </div>
+                                         <div class="modal-footer">
+                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" ng-click="save()">Lưu</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <!-- Modal add-->
+                         </div>
+                     </div>
+                     <table class=" table">
+                         <thead>
+                             <tr>
+                                 <th>STT</th>'
+                                 <th>ID</th>
+                                 <th>Câu hỏi</th>
+                                 <th>Đáp án</th>
+                                 <th></th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr ng-repeat="question in questions">
+                                 <td>{{$index+1}}</td>
+                                 <td>{{question.Id}}</td>
+                                 <td style="overflow-x: auto; width: 661px;">{{question.Text}}</td>
+                                 <td>
+                                     <select style="overflow: hidden; white-space:nowrap; text-overflow:ellipsis; width: 300px;">
+                                         <option ng-repeat="q in question.Answers" value="{{q.Id}}">{{q.Text}}</option>
+                                     </select>
+                                 </td>
+                                 <td>
+                                     <button class="btn btn-warning" ng-click="" data-bs-target="#update{{$index}}"
+                                         data-bs-toggle="modal">Sửa</button>
+
+                                     <!-- Modal update-->
+                                     <div class="modal fade" id="update{{$index}}" tabindex="-1" aria-labelledby="update" aria-hidden="true">
+                                         <div class="modal-dialog modal-dialog-centered">
+                                             <div class="modal-content">
+                                                 <div class="modal-header">
+                                                     <h5 class="modal-title" id="exampleModalLabel">Cập nhật câu hỏi</h5>
+                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                     <form>
+                                                         <div class="form-group mt-2">
+                                                             <label for="">Nội dung câu hỏi</label>
+                                                             <textarea type="text" class="form-control" ng-model="quiz.Question"></textarea>
+                                                         </div>
+                                                         <div class="form-group mt-2">
+                                                             <label for="">Điểm</label>
+                                                             <input type="text" class="form-control" ng-model="quiz.mark">
+                                                         </div>
+                                                         <div class="form-group mt-2">
+                                                             <label for="">Đáp án A</label>
+                                                             <input type="text" class="form-control" ng-model="quiz.AnswerA">
+                                                         </div>
+                                                         <div class="form-group mt-2">
+                                                             <label for="">Đáp án B</label>
+                                                             <input type="text" class="form-control" ng-model="quiz.AnswerB">
+                                                         </div>
+                                                         <div class="form-group mt-2">
+                                                             <label for="">Đáp án C</label>
+                                                             <input type="text" class="form-control" ng-model="quiz.AnswerC">
+                                                         </div>
+                                                         <div class="form-group mt-2">
+                                                             <label for="">Đáp án D</label>
+                                                             <input type="text" class="form-control" ng-model="quiz.AnswerD">
+                                                         </div>
+                                                         <div class="form-group mt-2">
+                                                             <label for="">Đáp án đúng</label>
+                                                             <select name="" id="" class="form-select">
+                                                                 <option value="">Đáp án A</option>
+                                                                 <option value="">Đáp án B</option>
+                                                                 <option value="">Đáp án C</option>
+                                                                 <option value="">Đáp án D</option>
+                                                             </select>
+                                                         </div>
+                                                     </form>
+                                                 </div>
+                                                 <div class="modal-footer">
+                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                                         ng-click="update()">Lưu</button>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <!-- Modal update-->
+
                                      <button class="btn btn-danger" ng-click="delete($index)">Xóa</button>
                                  </td>
                              </tr>

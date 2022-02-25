@@ -1,5 +1,5 @@
 <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1"
-    ng-controller="signupCtrl" ng-init="student.gender = true; student.marks=0; student.role=false">
+    ng-controller="signupCtrl" ng-init="student.gender = true; student.marks=0; student.role=1">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -85,13 +85,13 @@
                             </div>
                             <div class="form-group mt-3" style="margin-left: 55px;">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender_signup" id="inlineRadio1" value="true"
-                                        ng-model="student.gender" ng-checked="student.gender == true">
+                                    <input class="form-check-input" type="radio" name="gender_signup" id="inlineRadio1" value="1"
+                                        ng-model="student.gender" ng-checked="student.gender == 1">
                                     <label class="form-check-label" for="inlineRadio1">Nam</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender_signup" id="inlineRadio2" value="false"
-                                        ng-model="student.gender" ng-checked="student.gender == false">
+                                    <input class="form-check-input" type="radio" name="gender_signup" id="inlineRadio2" value="0"
+                                        ng-model="student.gender" ng-checked="student.gender != 1">
                                     <label class="form-check-label" for="inlineRadio2">Nữ</label>
                                 </div>
                             </div>

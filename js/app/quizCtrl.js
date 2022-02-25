@@ -5,8 +5,7 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
     $scope.mark = 0;
     $scope.timer = 900;
     $scope.isSubmitted = undefined;
-    $rootScope.subjectH = [];
-    $rootScope.subject = {};
+
 
     var course = document.querySelector('#course');
     var mark = document.querySelector('#mark');
@@ -21,7 +20,16 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
         }
     });
 
-    $http.get('db/Quizs/' + $routeParams.id + '.js').then((response) => {
+    $http.get('https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/subjects').then((response) => {
+        var indexSubject = 0;
+        $rootScope.subjects.forEach((ar, index) => {
+            if (ar.Id == $routeParams.id) {
+                $scope.subject = angular.copy(ar);
+                indexSubject = index;
+                return;
+            }
+        });
+        response.data = $scope.subjects[indexSubject].question;
         $scope.questions = response.data;
         console.log(response.data);
     })
@@ -31,38 +39,6 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
         quiz.classList.remove('hidee');
     }
 
-    $scope.endQuiz = () => {
-        Swal.fire({
-            title: 'Bạn có chắc không?',
-            text: "Bạn thật sự muốn kết thúc bài thi!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Có',
-            cancelButtonText: 'Không'
-        }).then((result) => {
-            if (result.value) {
-                $scope.timer = 3;
-                Swal.fire({
-                    title: 'Kết thúc bài thi',
-                    text: "Bài thi sẽ kết thúc sau 3 giây",
-                    icon: 'success',
-                    showConfirmButton: false,
-                    closeOnClickOutside: false,
-                    allowOutsideClick: false,
-                    timer: 4000
-                });
-
-            }
-        })
-
-        $rootScope.subject.name = $scope.subject.Name;
-        $rootScope.subject.mark = $scope.mark;
-        $rootScope.subject.date = new Date();
-
-    }
-    $rootScope.subjectH.push($rootScope.subject);
     $scope.submit = () => {
 
         //Nếu không chọn sẽ không cho phép submit
@@ -89,6 +65,65 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
             });
         }
     }
+
+
+    $scope.endQuiz = () => {
+
+        Swal.fire({
+            title: 'Bạn có chắc không?',
+            text: "Bạn thật sự muốn kết thúc bài thi!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không'
+        }).then((result) => {
+            if (result.value) {
+                $scope.timer = 3;
+                Swal.fire({
+                    title: 'Kết thúc bài thi',
+                    text: "Bài thi sẽ kết thúc sau 3 giây",
+                    icon: 'success',
+                    showConfirmButton: false,
+                    closeOnClickOutside: false,
+                    allowOutsideClick: false,
+                    timer: 4000
+                });
+
+            }
+        })
+
+    }
+
+    $scope.saveHistory = () => {
+
+        // $http.get('https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/students' + '/' + $rootScope.indexStudent + '/' + 'history').then((response) => {
+        //     console.log(response.data);
+        // })
+
+        $scope.newHistory = {};
+        $scope.newHistory.name = $scope.subject.Name;
+        $scope.newHistory.mark = $scope.mark;
+        $scope.newHistory.date = new Date();
+        $rootScope.students[$rootScope.indexStudent].history.push($scope.newHistory);
+
+        $http.post('https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/students' + '/' + $rootScope.students[$rootScope.indexStudent].id + '/' + 'history', $scope.newHistory).then((response) => {
+                Swal.fire({
+                    title: 'Lưu kết quả thành công!',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    closeOnClickOutside: false,
+                    allowOutsideClick: false,
+                    timer: 1600
+                })
+                window.location.href = '#course';
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+
 
     const formatTime = (val) => {
         var valString = val + "";

@@ -1,8 +1,9 @@
 app.controller('loginCtrl', ($scope, $rootScope) => {
+
     $scope.login = () => {
+
         for (var i = 0; i < $rootScope.students.length; i++) {
             if ($scope.students[i].username == $scope.username_login && $rootScope.students[i].password == $scope.password_login) {
-
                 Swal.fire({
                     title: 'Đăng nhập thành công!',
                     text: 'Quay lại trang chủ!',
@@ -16,10 +17,6 @@ app.controller('loginCtrl', ($scope, $rootScope) => {
                 $rootScope.student = angular.copy($rootScope.students[i]);
                 window.location.href = '#home';
                 $rootScope.indexStudent = i;
-                console.log($rootScope.indexStudent, $rootScope.students[$rootScope.indexStudent]);
-                if ($rootScope.students[i].role == true) {
-                    window.location.href = "#admin";
-                }
                 return;
             } else {
                 Swal.fire({
@@ -31,5 +28,4 @@ app.controller('loginCtrl', ($scope, $rootScope) => {
             }
         }
     }
-
 })

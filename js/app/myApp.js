@@ -1,25 +1,26 @@
-const app = angular.module('my_app', ['ngRoute']);
-
+const app = angular.module('my_app', ['ngRoute'])
 app.run(($rootScope, $http) => {
-
 
     $rootScope.student = {};
     $rootScope.subject = {};
     $rootScope.indexStudent = -1;
     $rootScope.isLogin = false;
 
-    const url = 'https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/students';
-    $http.get(url)
+    const urlStudent = 'https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/students';
+    const urlSubject = 'https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/subjects';
+    $http.get(urlStudent)
         .then((response) => {
             $rootScope.students = response.data;
+            console.log(response.data);
         })
         .catch((error) => {
             console.log(error);
         })
 
-    $http.get('db/Subjects.js')
+    $http.get(urlSubject)
         .then((response) => {
             $rootScope.subjects = response.data;
+            console.log(response.data);
         })
         .catch((error) => {
             console.log(error);
@@ -39,7 +40,5 @@ app.run(($rootScope, $http) => {
         })
         window.location.href = '#home';
     }
-
-
 
 })
