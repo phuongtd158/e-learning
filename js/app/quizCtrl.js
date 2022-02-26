@@ -1,11 +1,11 @@
 app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) => {
-
+    const url = 'https://6219009c81d4074e859ebf2f.mockapi.io/subjects';
     $scope.indexQuestion = 0;
     $scope.elem = [];
     $scope.mark = 0;
     $scope.timer = 900;
     $scope.isSubmitted = undefined;
-
+    $scope.indexSubject = 0;
 
     var course = document.querySelector('#course');
     var mark = document.querySelector('#mark');
@@ -13,23 +13,16 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
     var min = document.getElementById('min');
     var sec = document.getElementById('sec');
 
-    $rootScope.subjects.forEach(ar => {
+    $rootScope.subjects.forEach((ar, index) => {
         if (ar.Id == $routeParams.id) {
             $scope.subject = angular.copy(ar);
+            $scope.indexSubject = index;
             return;
         }
     });
 
-    $http.get('https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/subjects').then((response) => {
-        var indexSubject = 0;
-        $rootScope.subjects.forEach((ar, index) => {
-            if (ar.Id == $routeParams.id) {
-                $scope.subject = angular.copy(ar);
-                indexSubject = index;
-                return;
-            }
-        });
-        response.data = $scope.subjects[indexSubject].question;
+    $http.get(url + '/' + $rootScope.subjects[$scope.indexSubject].id + '/' + 'questions').then((response) => {
+        console.log(url + '/' + $rootScope.subjects[$scope.indexSubject].id + '/' + 'questions')
         $scope.questions = response.data;
         console.log(response.data);
     })
@@ -47,7 +40,7 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
         }
 
         var ans = $('input[name="answer"]:checked').val();
-        if (ans == $scope.questions[$scope.indexQuestion].AnswerId) {
+        if (ans == $scope.questions[$scope.indexQuestion].AnswersId) {
             Swal.fire({
                 icon: 'success',
                 title: 'Chúc mừng bạn đã chọn đúng!',
@@ -97,10 +90,6 @@ app.controller('quizCtrl', ($scope, $rootScope, $routeParams, $http, $interval) 
     }
 
     $scope.saveHistory = () => {
-
-        // $http.get('https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/students' + '/' + $rootScope.indexStudent + '/' + 'history').then((response) => {
-        //     console.log(response.data);
-        // })
 
         $scope.newHistory = {};
         $scope.newHistory.name = $scope.subject.Name;

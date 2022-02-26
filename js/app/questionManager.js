@@ -1,56 +1,61 @@
 app.controller('question', ($scope, $rootScope, $http) => {
-    const url = 'https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/subjects';
+    const url = 'https://6219009c81d4074e859ebf2f.mockapi.io/subjects';
 
-    $scope.indexSuject = 0;
+    $scope.indexSubject = 0;
     $scope.indexQuestion = 0;
 
-    $http.get(url).then((response) => {
-        response.data = $rootScope.subjects[$scope.indexSuject].question;
+
+    //Hiển thị mắc định danh sách câu hỏi của môn học đầu tiên lên table
+    $http.get(url + '/' + 1 + '/' + 'questions').then((response) => {
         $scope.questions = response.data;
     })
-    $http.get(url).then((response) => {
+
+    //Đổ danh sách câu hỏi của môn học được chọn lên table theo id
+    $scope.fillToTable = () => {
         var sb = $('#sb option:selected').val();
         $rootScope.subjects.forEach((ar, index) => {
             if (ar.Id == sb) {
-                $scope.indexSuject = index;
+                $scope.indexSubject = index;
                 return;
             }
         });
-        response.data = $scope.subjects[$scope.indexSuject].question;
-        $scope.questions = response.data;
-        console.log(sb);
-    })
-
-    $scope.change = () => {
-        $http.get(url).then((response) => {
-            var sb = $('#sb option:selected').val();
-            $rootScope.subjects.forEach((ar, index) => {
-                if (ar.Id == sb) {
-                    $scope.indexSuject = index;
-                    return;
-                }
-            });
-            response.data = $scope.subjects[$scope.indexSuject].question;
+        $http.get(url + '/' + $rootScope.subjects[$scope.indexSubject].id + '/' + 'questions').then((response) => {
             $scope.questions = response.data;
-            console.log(sb);
+            console.log(response.data);
         })
     }
-    var idTrue = Math.floor(Math.random() * 10000) + 10000;
-    $scope.question = {
-        "Id": Math.floor(Math.random() * 10000) + 10000,
-        "Text": '',
-        "Marks": '',
-        "AnswerId": idTrue,
-        "Answers": [{
-            "Id": Math.floor(Math.random() * 10000) + 10000,
-            "Text": ''
-        }]
-    };
+
+    //Gán id đáp án đúng cho option câu hỏi được chọn
+    $scope.correctAnswerId = (id) => {
+
+        var correctAnswerId = Math.floor(Math.random() * 10000) + 100001;
+
+        $scope.question.Answers[0].Id = Math.floor(Math.random() * 10000) + 100001;
+        $scope.question.Answers[1].Id = Math.floor(Math.random() * 10000) + 100001;
+        $scope.question.Answers[2].Id = Math.floor(Math.random() * 10000) + 100001;
+        $scope.question.Answers[3].Id = Math.floor(Math.random() * 10000) + 100001;
+
+        var ans = $('#' + id + ' option:selected').val();
+        if (ans == 'A') {
+            $scope.question.Answers[0].Id = correctAnswerId;
+        } else if (ans == 'B') {
+            $scope.question.Answers[1].Id = correctAnswerId;
+        } else if (ans == 'C') {
+            $scope.question.Answers[2].Id = correctAnswerId;
+        } else if (ans == 'D') {
+            $scope.question.Answers[3].Id = correctAnswerId;
+        }
+        $scope.question.AnswersId = correctAnswerId;
+    }
+
     $scope.save = () => {
         console.log('save');
 
-        $http.post(url, $scope.question).then((response) => {
+        $scope.correctAnswerId('an');
+
+        $http.post(url + '/' + $rootScope.subjects[$scope.indexSubject].id + '/' + 'questions', $scope.question).then((response) => {
             $scope.questions.push(response.data);
+            console.log(response.data)
             Swal.fire({
                 title: 'Thêm mới câu hỏi thành công!',
                 icon: 'success',
@@ -62,25 +67,65 @@ app.controller('question', ($scope, $rootScope, $http) => {
         })
     }
 
-    $scope.update = () => {
+    $scope.update = (index) => {
         console.log('update');
 
-        $http.put(url + '/' + $rootScope.subjects[$scope.indexSuject].id, $scope.question).then((response) => {
-            $scope.questions.push(response.data);
-            Swal.fire({
-                title: 'Thêm mới câu hỏi thành công!',
-                icon: 'success',
-                showConfirmButton: false,
-                closeOnClickOutside: false,
-                allowOutsideClick: false,
-                timer: 1600
-            })
-        })
+        $scope.correctAnswerId('anU');
 
+        $http.put(url + '/' + $rootScope.subjects[$scope.indexSubject].id + '/' + 'questions/' + $scope.questions[index].id, $scope.question)
+            .then((response) => {
+                console.log(response.data);
+                $scope.questions[index] = angular.copy($scope.question);
+                Swal.fire({
+                    title: 'Cập nhật câu hỏi thành công!',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    closeOnClickOutside: false,
+                    allowOutsideClick: false,
+                    timer: 1600
+                })
+            })
     }
 
     $scope.delete = (index) => {
-        console.log('delete');
-        $http.delete(url + '/' + $scope.subjects[index].id)
+        Swal.fire({
+                title: 'Bạn có muốn xóa câu hỏi này không ?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Có',
+                cancelButtonText: 'Không',
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    $http.delete(url + '/' + $rootScope.subjects[$scope.indexSubject].id + '/' + 'questions/' + $scope.questions[index].id)
+                        .then(response => {
+                            $scope.questions.splice(index, 1);
+                            Swal.fire({
+                                title: 'Xóa câu hỏi thành công!',
+                                icon: 'success',
+                                showConfirmButton: false,
+                                closeOnClickOutside: false,
+                                allowOutsideClick: false,
+                                timer: 1600
+                            })
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            Swal.fire({
+                                title: 'Xóa thất bại!',
+                                icon: 'error',
+                            })
+                        })
+                }
+            })
     }
+
+    $scope.edit = (index) => {
+        console.log('edit')
+        $scope.indexQuestion = index;
+        $scope.question = angular.copy($scope.questions[$scope.indexQuestion]);
+    }
+
 })

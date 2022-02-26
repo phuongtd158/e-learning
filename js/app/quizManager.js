@@ -1,6 +1,6 @@
 app.controller('quiz', ($scope, $rootScope, $http) => {
 
-    const url = 'https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/subjects';
+    const url = 'https://6219009c81d4074e859ebf2f.mockapi.io/subjects';
     $scope.subject = {};
     $scope.index = 0;
     $scope.flag = 0;
@@ -88,8 +88,6 @@ app.controller('quiz', ($scope, $rootScope, $http) => {
                         })
                 }
             })
-
-
     }
     $scope.update = () => {
         console.log('update');

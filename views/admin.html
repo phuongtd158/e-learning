@@ -181,51 +181,11 @@
              <div class="row">
                  <div class="col mt-4" style="box-shadow: 0 5px 40px rgb(0 0 0 / 15%); overflow: auto; height:600px">
                      <h5 class="text-center mt-2">Danh sách câu hỏi</h5>
-                     <!-- <form>
-                         <div class="form-group mt-2">
-                             <label for="">Môn học</label>
-                             <select name="" id="" class="form-select">
-                                 <option ng-repeat="subject in subjects" value="{{subject.Id}}">{{subject.Name}}</option>
-                             </select>
-                         </div>
-                         <div class="form-group mt-2">
-                             <label for="">Nội dung câu hỏi</label>
-                             <textarea type="text" class="form-control" ng-model="quiz.Question"></textarea>
-                         </div>
-                         <div class="form-group mt-2">
-                             <label for="">Điểm</label>
-                             <input type="text" class="form-control" ng-model="quiz.mark">
-                         </div>
-                         <div class="form-group mt-2">
-                             <label for="">Đáp án A</label>
-                             <input type="text" class="form-control" ng-model="quiz.AnswerA">
-                         </div>
-                         <div class="form-group mt-2">
-                             <label for="">Đáp án B</label>
-                             <input type="text" class="form-control" ng-model="quiz.AnswerB">
-                         </div>
-                         <div class="form-group mt-2">
-                             <label for="">Đáp án C</label>
-                             <input type="text" class="form-control" ng-model="quiz.AnswerC">
-                         </div>
-                         <div class="form-group mt-2">
-                             <label for="">Đáp án D</label>
-                             <input type="text" class="form-control" ng-model="quiz.AnswerD">
-                         </div>
-                         <div class="form-group mt-2">
-                             <label for="">Đáp án đúng</label>
-                             <select name="" id="" class="form-select">
-                                 <option value="">Đáp án A</option>
-                                 <option value="">Đáp án B</option>
-                                 <option value="">Đáp án C</option>
-                                 <option value="">Đáp án D</option>
-                             </select>
-                         </div>
-                     </form> -->
+
                      <div class="form-group mt-2 row">
                          <div class="col-11">
                              <label for="">Môn học</label>
-                             <select name="" id="sb" class="form-select" ng-click="change()">
+                             <select name="" id="sb" class="form-select" ng-click="fillToTable()">
                                  <option ng-repeat="subject in subjects" value="{{subject.Id}}">{{subject.Name}}</option>
                              </select>
                          </div>
@@ -250,7 +210,7 @@
                                                  </div>
                                                  <div class="form-group mt-2">
                                                      <label for="">Điểm</label>
-                                                     <input type="text" class="form-control" ng-model="question.Marks">
+                                                     <input type="number" class="form-control" ng-model="question.Marks">
                                                  </div>
                                                  <div class="form-group mt-2">
                                                      <label for="">Đáp án A</label>
@@ -270,11 +230,11 @@
                                                  </div>
                                                  <div class="form-group mt-2">
                                                      <label for="">Đáp án đúng</label>
-                                                     <select name="" id="" class="form-select">
-                                                         <option value="">Đáp án A</option>
-                                                         <option value="">Đáp án B</option>
-                                                         <option value="">Đáp án C</option>
-                                                         <option value="">Đáp án D</option>
+                                                     <select name="" id="an" class="form-select">
+                                                         <option value="A">Đáp án A</option>
+                                                         <option value="B">Đáp án B</option>
+                                                         <option value="C">Đáp án C</option>
+                                                         <option value="D">Đáp án D</option>
                                                      </select>
                                                  </div>
                                              </form>
@@ -310,8 +270,8 @@
                                      </select>
                                  </td>
                                  <td>
-                                     <button class="btn btn-warning" ng-click="" data-bs-target="#update{{$index}}"
-                                         data-bs-toggle="modal">Sửa</button>
+                                     <button class="btn btn-warning" data-bs-target="#update{{$index}}" data-bs-toggle="modal"
+                                         ng-click="edit($index)">Sửa</button>
 
                                      <!-- Modal update-->
                                      <div class="modal fade" id="update{{$index}}" tabindex="-1" aria-labelledby="update" aria-hidden="true">
@@ -325,35 +285,35 @@
                                                      <form>
                                                          <div class="form-group mt-2">
                                                              <label for="">Nội dung câu hỏi</label>
-                                                             <textarea type="text" class="form-control" ng-model="quiz.Question"></textarea>
+                                                             <textarea type="text" class="form-control" ng-model="question.Text"></textarea>
                                                          </div>
                                                          <div class="form-group mt-2">
                                                              <label for="">Điểm</label>
-                                                             <input type="text" class="form-control" ng-model="quiz.mark">
+                                                             <input type="number" class="form-control" ng-model="question.Marks">
                                                          </div>
                                                          <div class="form-group mt-2">
                                                              <label for="">Đáp án A</label>
-                                                             <input type="text" class="form-control" ng-model="quiz.AnswerA">
+                                                             <input type="text" class="form-control" ng-model="question.Answers[0].Text">
                                                          </div>
                                                          <div class="form-group mt-2">
                                                              <label for="">Đáp án B</label>
-                                                             <input type="text" class="form-control" ng-model="quiz.AnswerB">
+                                                             <input type="text" class="form-control" ng-model="question.Answers[1].Text">
                                                          </div>
                                                          <div class="form-group mt-2">
                                                              <label for="">Đáp án C</label>
-                                                             <input type="text" class="form-control" ng-model="quiz.AnswerC">
+                                                             <input type="text" class="form-control" ng-model="question.Answers[2].Text">
                                                          </div>
                                                          <div class="form-group mt-2">
                                                              <label for="">Đáp án D</label>
-                                                             <input type="text" class="form-control" ng-model="quiz.AnswerD">
+                                                             <input type="text" class="form-control" ng-model="question.Answers[3].Text">
                                                          </div>
                                                          <div class="form-group mt-2">
                                                              <label for="">Đáp án đúng</label>
-                                                             <select name="" id="" class="form-select">
-                                                                 <option value="">Đáp án A</option>
-                                                                 <option value="">Đáp án B</option>
-                                                                 <option value="">Đáp án C</option>
-                                                                 <option value="">Đáp án D</option>
+                                                             <select name="" id="anU" class="form-select">
+                                                                 <option value="A">Đáp án A</option>
+                                                                 <option value="B">Đáp án B</option>
+                                                                 <option value="C">Đáp án C</option>
+                                                                 <option value="D">Đáp án D</option>
                                                              </select>
                                                          </div>
                                                      </form>
@@ -361,13 +321,12 @@
                                                  <div class="modal-footer">
                                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                                         ng-click="update()">Lưu</button>
+                                                         ng-click="update($index)">Lưu</button>
                                                  </div>
                                              </div>
                                          </div>
                                      </div>
                                      <!-- Modal update-->
-
                                      <button class="btn btn-danger" ng-click="delete($index)">Xóa</button>
                                  </td>
                              </tr>

@@ -17,6 +17,9 @@ app.controller('loginCtrl', ($scope, $rootScope) => {
                 $rootScope.student = angular.copy($rootScope.students[i]);
                 window.location.href = '#home';
                 $rootScope.indexStudent = i;
+                if ($rootScope.students[i].role == 1) {
+                    window.location.href = '#admin';
+                }
                 return;
             } else {
                 Swal.fire({

@@ -7,7 +7,7 @@ app.run(($rootScope, $http) => {
     $rootScope.isLogin = false;
 
     const urlStudent = 'https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/students';
-    const urlSubject = 'https://62132f45f43692c9c6fc2265.mockapi.io/api/v1/subjects';
+    const urlSubject = 'https://6219009c81d4074e859ebf2f.mockapi.io/subjects';
     $http.get(urlStudent)
         .then((response) => {
             $rootScope.students = response.data;

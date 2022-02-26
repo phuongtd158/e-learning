@@ -1,4 +1,6 @@
 [{
+    "id": "1",
+    "subjectId": "1",
     "Id": 25106,
     "Text": "Có mấy loại Service?",
     "Marks": 1,
@@ -21,6 +23,8 @@
         }
     ]
 }, {
+    "id": "2",
+    "subjectId": "1",
     "Id": 25107,
     "Text": "Trong IntentService, phương thức onHandlerIntent sẽ được tự động gọi trong phương thức nào?",
     "Marks": 1,
@@ -39,6 +43,8 @@
         "Text": "onBind()"
     }]
 }, {
+    "id": "3",
+    "subjectId": "1",
     "Id": 25108,
     "Text": "Khi nào phương thức ServiceConnection.onServiceConnected được gọi?",
     "Marks": 1,
@@ -57,6 +63,8 @@
         "Text": "Khi một Service gọi Context.startActivity()"
     }]
 }, {
+    "id": "4",
+    "subjectId": "1",
     "Id": 25109,
     "Text": "Phương thức Service.stopSelf(int startId) có tham số kiểu int. Tham số này dùng để làm gì?",
     "Marks": 1,
@@ -75,6 +83,8 @@
         "Text": "Được sử dụng để dừng Service nếu Service đang chạy trong process id với process id bằng giá trị startid"
     }]
 }, {
+    "id": "5",
+    "subjectId": "1",
     "Id": 25110,
     "Text": "Câu nào là đúng khi đề cập đến Service?",
     "Marks": 1,
@@ -93,6 +103,8 @@
         "Text": "Service có thể chạy nền vô hạn kể cả khi thành phần khởi tạo Service đã bị hủy"
     }]
 }, {
+    "id": "6",
+    "subjectId": "1",
     "Id": 25111,
     "Text": "Trong IntentService, onBind mặc định trả lại giá trị nào?",
     "Marks": 1,
@@ -111,6 +123,8 @@
         "Text": "\"\""
     }]
 }, {
+    "id": "7",
+    "subjectId": "1",
     "Id": 25112,
     "Text": "Phương thức stopSelf dùng để làm gì?",
     "Marks": 1,
@@ -129,6 +143,8 @@
         "Text": "Dừng Service"
     }]
 }, {
+    "id": "8",
+    "subjectId": "1",
     "Id": 25113,
     "Text": "Phương thức onStartCommand được gọi khi nào?",
     "Marks": 1,
@@ -147,6 +163,8 @@
         "Text": "Khi phương thức startService được gọi"
     }]
 }, {
+    "id": "9",
+    "subjectId": "1",
     "Id": 25114,
     "Text": "Bạn nên giải phóng tài nguyên mà Service sử dụng trong phương thức nào?",
     "Marks": 1,
@@ -165,6 +183,8 @@
         "Text": "startService"
     }]
 }, {
+    "id": "10",
+    "subjectId": "1",
     "Id": 25115,
     "Text": "Để hủy Service dùng phương thức nào?",
     "Marks": 1,
@@ -183,6 +203,8 @@
         "Text": "StopServices"
     }]
 }, {
+    "id": "1",
+    "subjectId": "1",
     "Id": 25116,
     "Text": "Làm thế nào để disable một Broadcast Receiver khi nó đã được đăng ký trong AndroidManifest.xml?",
     "Marks": 1,
