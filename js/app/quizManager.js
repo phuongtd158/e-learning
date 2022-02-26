@@ -109,4 +109,5 @@ app.controller('quiz', ($scope, $rootScope, $http) => {
         $scope.index = -1;
         $scope.flag = 0;
     }
+    //Tạo 1 hàm cộng 2 csoos
 })

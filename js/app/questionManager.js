@@ -12,15 +12,15 @@ app.controller('question', ($scope, $rootScope, $http) => {
 
     //Đổ danh sách câu hỏi của môn học được chọn lên table theo id
     $scope.fillToTable = () => {
-        var sb = $('#sb option:selected').val();
-        $rootScope.subjects.forEach((ar, index) => {
-            if (ar.Id == sb) {
-                $scope.indexSubject = index;
+        var sb = $('#sb option:selected').val(); //Lấy ra value của option được chọn 
+        $rootScope.subjects.forEach((ar, index) => { //Duyệt mảng subjects
+            if (ar.Id == sb) { //Nếu value của option được chọn bằng id của môn học
+                $scope.indexSubject = index; //Gán indexSubject bằng index của môn học được chọn
                 return;
             }
         });
-        $http.get(url + '/' + $rootScope.subjects[$scope.indexSubject].id + '/' + 'questions').then((response) => {
-            $scope.questions = response.data;
+        $http.get(url + '/' + $rootScope.subjects[$scope.indexSubject].id + '/' + 'questions').then((response) => { //Lấy danh sách câu hỏi của môn học được chọn
+            $scope.questions = response.data; //Gán danh sách câu hỏi của môn học được chọn vào questions
             console.log(response.data);
         })
     }
@@ -28,14 +28,14 @@ app.controller('question', ($scope, $rootScope, $http) => {
     //Gán id đáp án đúng cho option câu hỏi được chọn
     $scope.correctAnswerId = (id) => {
 
-        var correctAnswerId = Math.floor(Math.random() * 10000) + 100001;
+        var correctAnswerId = Math.floor(Math.random() * 10000) + 100001; //Tạo ra id đáp án đúng ngẫu nhiên
 
         $scope.question.Answers[0].Id = Math.floor(Math.random() * 10000) + 100001;
         $scope.question.Answers[1].Id = Math.floor(Math.random() * 10000) + 100001;
         $scope.question.Answers[2].Id = Math.floor(Math.random() * 10000) + 100001;
         $scope.question.Answers[3].Id = Math.floor(Math.random() * 10000) + 100001;
 
-        var ans = $('#' + id + ' option:selected').val();
+        var ans = $('#' + id + ' option:selected').val(); //Lấy ra value của option được chọn
         if (ans == 'A') {
             $scope.question.Answers[0].Id = correctAnswerId;
         } else if (ans == 'B') {
@@ -46,11 +46,16 @@ app.controller('question', ($scope, $rootScope, $http) => {
             $scope.question.Answers[3].Id = correctAnswerId;
         }
         $scope.question.AnswersId = correctAnswerId;
+
+    }
+
+    $scope.clear = () => {
+        $scope.question = {};
+        $scope.indexQuestion = 0;
     }
 
     $scope.save = () => {
         console.log('save');
-
         $scope.correctAnswerId('an');
 
         $http.post(url + '/' + $rootScope.subjects[$scope.indexSubject].id + '/' + 'questions', $scope.question).then((response) => {
@@ -69,7 +74,6 @@ app.controller('question', ($scope, $rootScope, $http) => {
 
     $scope.update = (index) => {
         console.log('update');
-
         $scope.correctAnswerId('anU');
 
         $http.put(url + '/' + $rootScope.subjects[$scope.indexSubject].id + '/' + 'questions/' + $scope.questions[index].id, $scope.question)

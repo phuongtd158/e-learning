@@ -4,7 +4,7 @@
     "Id": 25106,
     "Text": "Có mấy loại Service?",
     "Marks": 1,
-    "AnswerId": 104121,
+    "AnswersId": 104121,
     "Answers": [{
             "Id": 104118,
             "Text": "3"
@@ -28,7 +28,7 @@
     "Id": 25107,
     "Text": "Trong IntentService, phương thức onHandlerIntent sẽ được tự động gọi trong phương thức nào?",
     "Marks": 1,
-    "AnswerId": 104124,
+    "AnswersId": 104124,
     "Answers": [{
         "Id": 104122,
         "Text": "onServiceConnected()"
@@ -48,7 +48,7 @@
     "Id": 25108,
     "Text": "Khi nào phương thức ServiceConnection.onServiceConnected được gọi?",
     "Marks": 1,
-    "AnswerId": 104126,
+    "AnswersId": 104126,
     "Answers": [{
         "Id": 104126,
         "Text": "Sau khi một thành phần gọi Context.startService()"
@@ -68,7 +68,7 @@
     "Id": 25109,
     "Text": "Phương thức Service.stopSelf(int startId) có tham số kiểu int. Tham số này dùng để làm gì?",
     "Marks": 1,
-    "AnswerId": 104132,
+    "AnswersId": 104132,
     "Answers": [{
         "Id": 104130,
         "Text": "Nếu startId khác 0, Service sẽ bị hủy một cách vô điều kiện"
@@ -88,7 +88,7 @@
     "Id": 25110,
     "Text": "Câu nào là đúng khi đề cập đến Service?",
     "Marks": 1,
-    "AnswerId": 104137,
+    "AnswersId": 104137,
     "Answers": [{
         "Id": 104134,
         "Text": "Các ứng dụng khác nhau không thể truy cập đến các Service của chính nó"
@@ -108,7 +108,7 @@
     "Id": 25111,
     "Text": "Trong IntentService, onBind mặc định trả lại giá trị nào?",
     "Marks": 1,
-    "AnswerId": 104139,
+    "AnswersId": 104139,
     "Answers": [{
         "Id": 104138,
         "Text": "-1"
@@ -128,7 +128,7 @@
     "Id": 25112,
     "Text": "Phương thức stopSelf dùng để làm gì?",
     "Marks": 1,
-    "AnswerId": 104145,
+    "AnswersId": 104145,
     "Answers": [{
         "Id": 104142,
         "Text": "Dừng thông báo notification tới người dùng"
@@ -148,7 +148,7 @@
     "Id": 25113,
     "Text": "Phương thức onStartCommand được gọi khi nào?",
     "Marks": 1,
-    "AnswerId": 104149,
+    "AnswersId": 104149,
     "Answers": [{
         "Id": 104146,
         "Text": "Khi phương thức bindService được gọi"
@@ -168,7 +168,7 @@
     "Id": 25114,
     "Text": "Bạn nên giải phóng tài nguyên mà Service sử dụng trong phương thức nào?",
     "Marks": 1,
-    "AnswerId": 104152,
+    "AnswersId": 104152,
     "Answers": [{
         "Id": 104150,
         "Text": "onPause"
@@ -188,7 +188,7 @@
     "Id": 25115,
     "Text": "Để hủy Service dùng phương thức nào?",
     "Marks": 1,
-    "AnswerId": 104155,
+    "AnswersId": 104155,
     "Answers": [{
         "Id": 104154,
         "Text": "PauseService"
